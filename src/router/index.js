@@ -10,6 +10,16 @@ const router = new Router({
             component: () => import("../pages/Home.vue"),
             name: "Home",
         },
+        {
+            path: "/vue2",
+            component: () => import("../pages/Home2.vue"),
+            name: "Home2",
+        },
+        {
+            path: "/setup",
+            component: () => import("../pages/HomeSetup.vue"),
+            name: "HomeSetup",
+        },
     ],
 })
 

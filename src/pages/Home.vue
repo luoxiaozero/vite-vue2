@@ -5,13 +5,14 @@ import { useUserStore } from "../store"
 export default defineComponent({
     name: "Home",
     setup() {
-        const countRef = ref(1)
         const userStore = useUserStore()
+        const countRef = ref(userStore.token)
+        
 
         function add() {
             countRef.value++
                     
-            userStore.updateToken("init" + countRef.value)
+            userStore.updateToken(countRef.value)
         }
 
         return {

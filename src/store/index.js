@@ -7,7 +7,7 @@ Vue.use(PiniaVuePlugin)
 export const useUserStore = defineStore({
     id: "user",
     state: () => {
-        return { token: "" }
+        return { token: -1 }
     },
     actions: {
         updateToken(token) {
