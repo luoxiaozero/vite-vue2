@@ -27,4 +27,4 @@ export const useUserStore = defineStore({
 
 const pinia = createPinia()
 pinia.use(piniaPluginPersist)
-export default pinia 
+export default pinia

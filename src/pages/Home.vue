@@ -7,11 +7,11 @@ export default defineComponent({
     setup() {
         const userStore = useUserStore()
         const countRef = ref(userStore.token)
-        
+
 
         function add() {
             countRef.value++
-                    
+
             userStore.updateToken(countRef.value)
         }
 
