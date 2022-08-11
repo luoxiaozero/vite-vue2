@@ -6,12 +6,12 @@ Vue.use(Router)
 const router = new Router({
     routes: [
         {
-            path: "/",
+            path: "/vue",
             component: () => import("../pages/Home.vue"),
             name: "Home",
         },
         {
-            path: "/vue2",
+            path: "/",
             component: () => import("../pages/Home2.vue"),
             name: "Home2",
         },

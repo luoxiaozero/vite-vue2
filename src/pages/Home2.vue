@@ -1,10 +1,12 @@
 <script>
 import { useUserStore } from "../store"
 import MInputNumber from "../components/m-input-number.vue"
+import MInputNumber2 from "../components/m-inout-number-2.vue"
 export default {
     name: "Home",
     components: {
-        MInputNumber
+        MInputNumber,
+        MInputNumber2
     },
     data() {
         const userStore = useUserStore()
@@ -26,10 +28,12 @@ export default {
 <template>
     <div>
         <el-form>
+            <m-input-number-2 v-model="input" placeholder="请输入内容2" separator :precision="12"
+        percent :disabled="false"></m-input-number-2>
         <m-input-number v-model="input" placeholder="请输入内容2" separator
         percent :min="0" :disabled="false"></m-input-number>
         <el-input v-model="input" placeholder="请输入内容1"></el-input>
-        <el-input-number v-model="input" placeholder="请输入内容0"></el-input-number>
+        <!-- <el-input-number v-model="input" placeholder="请输入内容0"></el-input-number> -->
         <button @click="add">+1</button>
         {{ count }}
         </el-form>

@@ -78,7 +78,7 @@ export default Vue.extend({
             let currentValue = this.currentValue;
             if (typeof currentValue === 'number') {
                 if (this.precision !== undefined) {
-                    currentValue = Number.parseFloat(currentValue.toFixed(this.precision));
+                    currentValue = currentValue.toFixed(this.precision);
                 }
                 currentValue = this.format(currentValue)
             }
@@ -121,7 +121,7 @@ export default Vue.extend({
         format(value) {
             let newVal = value;
             if (this.separator) {
-                newVal = value.toLocaleString('en-US') // String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ',') 
+                newVal = newVal.replace(/\B(?=(\d{3})+(?!\d))/g, ',')  // value.toLocaleString('en-US') // String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ',') 
             }
             if (this.percent) {
                 newVal = `${newVal}%`
