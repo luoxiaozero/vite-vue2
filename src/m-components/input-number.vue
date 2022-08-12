@@ -18,7 +18,9 @@ export default Vue.extend({
         }
     },
     props: {
+        /**是否开启数字千位分隔符 */
         separator: Boolean,
+        /**是否开启数字百分号 */
         percent: Boolean,
         value: [Number, String],
         precision: Number,
@@ -92,7 +94,6 @@ export default Vue.extend({
             if (this.separator) {
                 newVal = newVal.replace(/,/g, '').trim()
             }
-
             return newVal === '' ? undefined : Number(newVal)
         },
         format(value) {
@@ -121,6 +122,7 @@ export default Vue.extend({
         },
         handleInput(value) {
             this.userInput = value;
+            // this.handleInputChange(value);
         },
         handleInputChange(value) {
             const newVal = this.parse(value);
@@ -134,4 +136,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.m-input-number {
+    display: inline-block;
+}
+
+.m-input-number :deep(.el-input__inner) {
+    text-align: center;
+}
 </style>

@@ -7,18 +7,18 @@ const router = new Router({
     routes: [
         {
             path: "/",
-            component: () => import("../pages/Home.vue"),
+            component: () => import("../pages/home.vue"),
             name: "Home",
         },
         {
-            path: "/vue2",
-            component: () => import("../pages/Home2.vue"),
-            name: "Home2",
+            path: "/setup",
+            component: () => import("../pages/home-setup.vue"),
+            name: "HomeSetup",
         },
         {
-            path: "/setup",
-            component: () => import("../pages/HomeSetup.vue"),
-            name: "HomeSetup",
+            path: "/setup-plus",
+            component: () => import("../pages/home-setup-plus.vue"),
+            name: "HomeSetupPlus",
         },
     ],
 })
