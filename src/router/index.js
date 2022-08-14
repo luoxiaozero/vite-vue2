@@ -6,19 +6,24 @@ Vue.use(Router)
 const router = new Router({
     routes: [
         {
-            path: "/vue",
-            component: () => import("../pages/Home.vue"),
+            path: "/",
+            component: () => import("../pages/home.vue"),
             name: "Home",
         },
         {
-            path: "/",
-            component: () => import("../pages/Home2.vue"),
-            name: "Home2",
+            path: "/setup",
+            component: () => import("../pages/home-setup.vue"),
+            name: "HomeSetup",
         },
         {
             path: "/setup",
             component: () => import("../pages/HomeSetup.vue"),
             name: "HomeSetup",
+        },
+        {
+            path: "/setup-plus",
+            component: () => import("../pages/home-setup-plus.vue"),
+            name: "HomeSetupPlus",
         },
     ],
 })

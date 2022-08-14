@@ -8,7 +8,7 @@
 
 <script>
 import Vue from "vue";
-import KeyCode from '../util/key-code.js';
+import KeyCode from './util/key-code.js';
 export default Vue.extend({
     name: "MInputNumber",
     inject: {
@@ -36,9 +36,8 @@ export default Vue.extend({
     },
     data() {
         return {
-            currentValue: 0,
+            currentConversionValue: 0,
             userInput: null,
-
             // cursor
             cursorStart: 0,
             cursorEnd: 0,
@@ -64,7 +63,7 @@ export default Vue.extend({
                     }
                 }
                 if (newVal <= this.min) newVal = this.min;
-                this.currentValue = newVal;
+                this.currentConversionValue = newVal;
                 this.userInput = null;
                 this.$emit('input', newVal);
             }
@@ -75,7 +74,7 @@ export default Vue.extend({
             if (this.userInput !== null) {
                 return this.userInput;
             }
-            let currentValue = this.currentValue;
+            let currentValue = this.currentConversionValue;
             if (typeof currentValue === 'number') {
                 if (this.precision !== undefined) {
                     currentValue = currentValue.toFixed(this.precision);
@@ -147,7 +146,6 @@ export default Vue.extend({
                         // If not match any of then, let's just keep the position
                         // TODO: Logic should not reach here, need check if happens
                         let pos = this.cursorStart + 1;
-
                         // If not have last string, just position to the end
                         if (!this.cursorAfter) {
                             pos = inputElem.value.length;
@@ -179,25 +177,20 @@ export default Vue.extend({
         },
         partRestoreByAfter(str) {
             if (str === undefined) return false;
-
             // For loop from full str to the str with last char to map. e.g. 123
             // -> 123
             // -> 23
             // -> 3
             return Array.prototype.some.call(str, (_, start) => {
                 const partStr = str.substring(start);
-
                 return this.restoreByAfter(partStr);
             });
         },
         restoreByAfter(str) {
             if (str === undefined) return false;
-
             const fullStr = this.$refs.inputRef.$refs.input.value;
             const index = fullStr.lastIndexOf(str);
-
             if (index === -1) return false;
-
             const prevCursorPos = this.cursorBefore.length;
             if (
                 this.lastKeyCode === KeyCode.DELETE &&
@@ -208,7 +201,6 @@ export default Vue.extend({
             }
             if (index + str.length === fullStr.length) {
                 this.fixCaret(index, index);
-
                 return true;
             }
             return false;
@@ -218,7 +210,6 @@ export default Vue.extend({
             if (start === undefined || end === undefined || !inputElem || !inputElem.value) {
                 return;
             }
-
             try {
                 const currentStart = inputElem.selectionStart;
                 const currentEnd = inputElem.selectionEnd;
@@ -252,7 +243,7 @@ export default Vue.extend({
             return Number.parseFloat(Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision));
         },
         setCurrentValue(newVal) {
-            const oldVal = this.currentValue;
+            const oldVal = this.currentConversionValue;
             if (typeof newVal === 'number' && this.precision !== undefined) {
                 newVal = this.toPrecision(newVal, this.precision);
             }
@@ -260,7 +251,7 @@ export default Vue.extend({
             if (oldVal === newVal) return;
             this.$emit('input', newVal);
             this.$emit('change', newVal, oldVal);
-            this.currentValue = newVal;
+            this.currentConversionValue = newVal;
         },
         handleKeyDown() {
             this.recordCursorPosition();
