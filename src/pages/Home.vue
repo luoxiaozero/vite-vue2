@@ -30,15 +30,15 @@ export default {
 <template>
     <div>
         <el-form>
-            <m-input-number-plus v-model="num2" placeholder="请输入" separator percent :min="0" :disabled="false">
+            <m-input-number-plus v-model="num2" placeholder="请输入" separator percent :min="0" :disabled="false"
+                :precision="2">
             </m-input-number-plus>
-            <m-input-number v-model="input" placeholder="请输入内容2" separator percent :min="0" :disabled="false">
+            <m-input-number v-model="input" placeholder="请输入内容2" separator percent :min="0" :disabled="false"
+                :precision="2">
             </m-input-number>
-            <m-input-number v-model="input" placeholder="请输入内容2" separator percent :min="0" :disabled="false">
-            </m-input-number>
-            <el-input v-model="input" placeholder="请输入内容1"></el-input>
             <el-input-number v-model="input" placeholder="请输入内容0"></el-input-number>
             <button @click="add">+1</button>
+            <el-input v-model="input" placeholder="请输入内容1"></el-input>
             {{ count }}
         </el-form>
     </div>

@@ -79,7 +79,7 @@ export default Vue.extend({
                 if (this.precision !== undefined) {
                     currentValue = currentValue.toFixed(this.precision);
                 }
-                currentValue = this.format(currentValue)
+                currentValue = this.format(String(currentValue))
             }
             return currentValue;
         },
@@ -106,7 +106,7 @@ export default Vue.extend({
     methods: {
         parse(value) {
             if (value === '') {
-                return undefined
+                return '';
             }
             let newVal = value;
             if (this.percent) {
@@ -115,7 +115,7 @@ export default Vue.extend({
             if (this.separator) {
                 newVal = newVal.replace(/,/g, '').trim()
             }
-            return newVal === '' ? undefined : Number(newVal)
+            return newVal;
         },
         format(value) {
             let newVal = value;
@@ -250,7 +250,6 @@ export default Vue.extend({
             if (newVal <= this.min) newVal = this.min;
             if (oldVal === newVal) return;
             this.$emit('input', newVal);
-            this.$emit('change', newVal, oldVal);
             this.currentConversionValue = newVal;
         },
         handleKeyDown() {
@@ -271,11 +270,17 @@ export default Vue.extend({
         },
         handleInput(value) {
             this.userInput = value;
-            this.handleInputChange(value);
+            const newVal = Number(this.parse(value));
+            if (Number.isNaN(newVal)) {
+                this.currentConversionValue = value
+            } else {
+                this.setCurrentValue(newVal);
+            }
         },
         handleInputChange(value) {
-            const newVal = this.parse(value);
-            if (!Number.isNaN(newVal) || value === '') {
+            let newVal = this.parse(value);
+            newVal = Number.parseFloat(newVal);
+            if (!Number.isNaN(newVal)) {
                 this.setCurrentValue(newVal);
             }
             this.userInput = null;
