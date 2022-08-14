@@ -16,11 +16,6 @@ const router = new Router({
             name: "HomeSetup",
         },
         {
-            path: "/setup",
-            component: () => import("../pages/HomeSetup.vue"),
-            name: "HomeSetup",
-        },
-        {
             path: "/setup-plus",
             component: () => import("../pages/home-setup-plus.vue"),
             name: "HomeSetupPlus",
