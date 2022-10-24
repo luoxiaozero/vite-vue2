@@ -31,7 +31,7 @@ export default Vue.extend({
         size: String,
         min: {
             type: Number,
-            default: -Number.Infinity
+            default: -Infinity
         },
     },
     data() {
