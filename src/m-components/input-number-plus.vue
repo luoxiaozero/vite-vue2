@@ -282,6 +282,8 @@ export default Vue.extend({
             newVal = Number.parseFloat(newVal);
             if (!Number.isNaN(newVal)) {
                 this.setCurrentValue(newVal);
+            } else {
+                this.setCurrentValue(this.value)
             }
             this.userInput = null;
         },
