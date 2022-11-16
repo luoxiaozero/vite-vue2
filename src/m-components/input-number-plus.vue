@@ -245,7 +245,11 @@ export default Vue.extend({
         setCurrentValue(newVal) {
             const oldVal = this.currentConversionValue;
             if (typeof newVal === 'number' && this.precision !== undefined) {
-                newVal = this.toPrecision(newVal, this.precision);
+                let precisionVal = this.toPrecision(newVal, this.precision);
+                if (precisionVal != newVal || String(precisionVal) != this.userInput) {
+                    this.userInput = null;
+                }
+                newVal = precisionVal
             }
             if (newVal <= this.min) newVal = this.min;
             if (oldVal === newVal) return;
