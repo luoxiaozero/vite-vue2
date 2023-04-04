@@ -23,6 +23,13 @@ const router = new Router({
     ],
 })
 
+router.beforeEach((to, from, next) => {
+    document.body.scrollTop = 0
+    // firefox
+    document.documentElement.scrollTop = 0
+    next()
+})
+
 export function useRoute() {
     const { proxy } = getCurrentInstance()
     const route = proxy.$route
