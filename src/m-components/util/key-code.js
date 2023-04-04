@@ -4,7 +4,7 @@
  * @author yiminghe@gmail.com
  */
 
-const KeyCode = {
+ const KeyCode = {
   /**
    * MAC_ENTER
    */
